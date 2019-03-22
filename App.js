@@ -2,13 +2,24 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 class App extends Component {
-  render() { return (
-      <View style={styles.container}>
-         <Text style={styles.welcome}>Welcome to React fuckthis!</Text>
-         <Text style={styles.instructions}>To get started, edit App.js</Text>
-         <Text style={styles.instructions}>foo</Text>
+
+   state = {
+      foo: 'foobartesting'
+   }
+
+   render() { return (
+      <View style={ styles.container }>
+         <Block style={ styles.welcome } text={ `Welcome to React sadadsads!` } />
+         <Block style={ styles.instructions } text={ `To get started, edit App.js` } />
+         <Block style={ styles.instructions } text={ this.state.foo } />
       </View>
    )}
+}
+
+function Block(props) {
+   return (
+      <Text style={ props.style }>{ props.text }</Text>
+   )
 }
 
 const styles = StyleSheet.create({
@@ -18,12 +29,12 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: '#F5FCFF',
    },
-      welcome: {
+   welcome: {
       fontSize: 20,
       textAlign: 'center',
       margin: 10,
    },
-      instructions: {
+   instructions: {
       textAlign: 'center',
       color: '#333333',
       marginBottom: 5,
