@@ -2,24 +2,13 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 class App extends Component {
-
-   state = {
-      foo: 'foobartesting'
-   }
-
    render() { return (
       <View style={ styles.container }>
-         <Block style={ styles.welcome } text={ `Welcome to React sadadsads!` } />
-         <Block style={ styles.instructions } text={ `To get started, edit App.js` } />
-         <Block style={ styles.instructions } text={ this.state.foo } />
+         <Text style={ styles.welcome }>Welcome to React Native!</Text>
+         <Text style={ styles.instructions }>To get started, edit App.js</Text>
+         <Text style={ styles.instructions }>foobarz</Text>
       </View>
    )}
-}
-
-function Block(props) {
-   return (
-      <Text style={ props.style }>{ props.text }</Text>
-   )
 }
 
 const styles = StyleSheet.create({
@@ -27,7 +16,7 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#F5FCFF',
+      backgroundColor: 'white',
    },
    welcome: {
       fontSize: 20,
@@ -38,7 +27,7 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       color: '#333333',
       marginBottom: 5,
-   },
+   }
 });
 
 export default App;
