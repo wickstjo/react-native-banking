@@ -5,7 +5,7 @@ class Footer extends Component {
    render() { return (
       <View style={ styles.container }>
          <View style={ styles.innerbody }>
-            <Text style={ styles.text }>Footer</Text>
+            <Text style={ styles.text } onPress={ this.props.add }>Footer</Text>
          </View>
       </View>
    )}
@@ -30,7 +30,8 @@ const styles = {
          width: 1,
          height: 1
       },
-      textShadowRadius: 1
+      textShadowRadius: 1,
+      textAlign: 'center'
    }
 }
 

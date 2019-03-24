@@ -6,7 +6,7 @@ class Content extends Component {
    render() { return (
       <View style={ styles.container }>
          <View style={ styles.innerbody }>
-            <Table data={ this.props.data } />
+            <Table data={ this.props.data } remove={ this.props.remove } />
          </View>
       </View>
    )}
