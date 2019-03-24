@@ -7,6 +7,8 @@ import Footer from './layout/footer';
 class App extends Component {
 
    state = {
+      header: 'Header',
+      footer: 'Footer',
       content: [
          'first',
          'second',
@@ -30,9 +32,9 @@ class App extends Component {
 
    render() { return (
       <>
-         <Header />
+         <Header text={ this.state.header } />
          <Content data={ this.state.content } remove={ this.remove } />
-         <Footer add={ this.add } />
+         <Footer text={ this.state.footer } add={ this.add } />
       </>
    )}
 }

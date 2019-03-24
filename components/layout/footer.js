@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableWithoutFeedback } from 'react-native';
 
 class Footer extends Component {
    render() { return (
-      <View style={ styles.container }>
-         <View style={ styles.innerbody }>
-            <Text style={ styles.text } onPress={ this.props.add }>Footer</Text>
+      <TouchableWithoutFeedback onPress={ this.props.add }>
+         <View style={ styles.container }>
+            <Text style={ styles.text }>
+               { this.props.text }
+            </Text>
          </View>
-      </View>
+      </TouchableWithoutFeedback>
    )}
 }
 
 const styles = {
    container: {
       backgroundColor: '#6A94E1',
-      flex: 1
-   },
-   innerbody: {
       flex: 1,
       justifyContent: 'center',
-      paddingLeft: 12
+      alignItems: 'center'
    },
    text: {
       fontSize: 15,
@@ -31,7 +30,6 @@ const styles = {
          height: 1
       },
       textShadowRadius: 1,
-      textAlign: 'center'
    }
 }
 
