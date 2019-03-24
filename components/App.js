@@ -16,7 +16,7 @@ class App extends Component {
    render() { return (
       <>
          <Header />
-         <Content list={ this.state.content } />
+         <Content data={ this.state.content } />
          <Footer />
       </>
    )}

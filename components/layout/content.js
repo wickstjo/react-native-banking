@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, FlatList } from 'react-native';
+import { View } from 'react-native';
+import Table from './table';
 
 class Content extends Component {
    render() { return (
       <View style={ styles.container }>
          <View style={ styles.innerbody }>
-            <FlatList
-               data={ this.props.list }
-               keyExtractor={ (item, index) => index.toString() }
-               renderItem={
-                  ({item}) => <Text>{ item }</Text>
-               }
-            />
+            <Table data={ this.props.data } />
          </View>
       </View>
    )}
@@ -23,7 +18,8 @@ const styles = {
       flex: 15
    },
    innerbody: {
-      padding: 15
+      padding: 15,
+      paddingTop: 10
    }
 }
 
