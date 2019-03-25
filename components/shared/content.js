@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import Table from '../pages/home/table';
 
 class Content extends Component {
    render() { return (
       <View style={{ ...styles.container, ...{ flex: this.props.size } }}>
          <View style={ styles.innerbody }>
-            <Table data={ this.props.data } remove={ this.props.remove } />
+            { this.props.children }
          </View>
       </View>
    )}

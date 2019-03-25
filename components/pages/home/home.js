@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import Header from '../../layout/header';
-import Content from '../../layout/content';
-import Footer from '../../layout/footer';
+import { Text } from 'react-native';
+
+import Header from '../../shared/header';
+import Content from '../../shared/content';
+import Footer from '../../shared/footer';
+import Table from './table';
 
 class Home extends Component {
 
@@ -33,18 +36,19 @@ class Home extends Component {
       <>
          <Header
             page={ this.state.header }
+            styles={ this.props.styles }
          />
-         <Content
-            size={ 15 }
-            data={ this.state.profiles }
-            func={ this.remove }
-         />
-         <Footer
-            size={ 1 }
-            add={ this.add }
-            text={ this.state.footer }
-            func={ this.add }
-         />
+         <Content size={ 15 }>
+            <Table
+               data={ this.state.profiles }
+               remove={ this.remove }
+            />
+         </Content>
+         <Footer size={ 1 }>
+            <Text style={ this.props.styles.font }>
+               Create Profile
+            </Text>
+         </Footer>
       </>
    )}
 }

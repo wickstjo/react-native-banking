@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, FlatList, TouchableWithoutFeedback } from 'react-native';
+import { View, FlatList } from 'react-native';
+import Button from './button';
 
 class Table extends Component {
    render() { return (
@@ -7,7 +8,13 @@ class Table extends Component {
          data={ this.props.data }
          keyExtractor={ (item, index) => index.toString() }
          renderItem={
-            ({item, index}) => <Row style={ styles.row } header={ item } id={ index } remove={ this.props.remove } />
+            ({item, index}) =>
+               <Row
+                  style={ styles.row }
+                  header={ item }
+                  id={ index }
+                  remove={ this.props.remove }
+               />
          }
       />
    )}
@@ -16,16 +23,19 @@ class Table extends Component {
 function Row(props) {
    return (
       <View style={ styles.row.container }>
-         <TouchableWithoutFeedback>
-            <View style={ styles.row.left }>
-               <Text>{ props.header }</Text>
-            </View>
-         </TouchableWithoutFeedback>
-         <TouchableWithoutFeedback onPress={ () => { props.remove(props.id) } }>
-            <View style={ styles.row.right }>
-               <Text style={ styles.row.text }>Remove</Text>
-            </View>
-         </TouchableWithoutFeedback>
+         <Button
+            func={ props.remove }
+            id={ props.id }
+            text={ props.header.toUpperCase() }
+            primary={ styles.row.left }
+         />
+         <Button
+            func={ props.remove }
+            id={ props.id }
+            text={ `Remove` }
+            primary={ styles.row.right }
+            secondary={ styles.row.text }
+         />
       </View>
    )
 }

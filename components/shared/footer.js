@@ -4,9 +4,7 @@ import { Text, View } from 'react-native';
 class Footer extends Component {
    render() { return (
       <View style={{ ...styles.container, ...{ flex: this.props.size } }}>
-         <Text style={ styles.text }>
-            { this.props.text }
-         </Text>
+         { this.props.children }
       </View>
    )}
 }
