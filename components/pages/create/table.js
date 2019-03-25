@@ -3,22 +3,20 @@ import { View, Text, TextInput, TouchableWithoutFeedback } from 'react-native';
 
 class Table extends Component {
 
-   constructor(props) {
-      super(props);
-
-      this.myRef = React.createRef();
-   }
+   // CREATE REFERENCE
+   input_field = React.createRef();
 
    render() { return (
-      <TouchableWithoutFeedback onPress={ () => { this.myRef.focus() } }>
+      <TouchableWithoutFeedback onPress={ () => { this.input_field.focus() } }>
          <View style={{ ...styles.container, ...this.props.styles }}>
             <View style={ styles.row }>
                <Text style={ styles.left }>{ this.props.primary }:</Text>
                <View style={ styles.right }>
                   <TextInput
-                     ref={ component => this.myRef = component }
+                     ref={ component => this.input_field = component }
                      placeholder={ `None` }
                      style={ styles.input }
+                     onChangeText={ (text) => { this.props.func(text) } }
                   />
                </View>
             </View>

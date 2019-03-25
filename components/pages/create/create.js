@@ -29,6 +29,12 @@ class Create extends Component {
                   <Selections
                      start={ this.state.start }
                      destination={ this.state.destination }
+                     update_start ={
+                        (value) => { this.setState({ start: value }) }
+                     }
+                     update_destination ={
+                        (value) => { this.setState({ destination: value }) }
+                     }
                   />
                </View>
                <View style={ styles.lower }>
