@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { KeyboardAvoidingView, ScrollView, View } from 'react-native';
+
 import Home from './pages/home/home';
 import Profile from './pages/profile/profile';
 import Create from './pages/create/create';
