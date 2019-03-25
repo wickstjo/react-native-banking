@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import Table from './table';
+import Table from '../pages/home/table';
 
 class Content extends Component {
    render() { return (
-      <View style={ styles.container }>
+      <View style={{ ...styles.container, ...{ flex: this.props.size } }}>
          <View style={ styles.innerbody }>
             <Table data={ this.props.data } remove={ this.props.remove } />
          </View>
@@ -15,7 +15,6 @@ class Content extends Component {
 const styles = {
    container: {
       backgroundColor: 'white',
-      flex: 15
    },
    innerbody: {
       padding: 15,

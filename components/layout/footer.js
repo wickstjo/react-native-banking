@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableWithoutFeedback } from 'react-native';
+import { Text, View } from 'react-native';
 
 class Footer extends Component {
    render() { return (
-      <TouchableWithoutFeedback onPress={ this.props.add }>
-         <View style={ styles.container }>
-            <Text style={ styles.text }>
-               { this.props.text }
-            </Text>
-         </View>
-      </TouchableWithoutFeedback>
+      <View style={{ ...styles.container, ...{ flex: this.props.size } }}>
+         <Text style={ styles.text }>
+            { this.props.text }
+         </Text>
+      </View>
    )}
 }
 
 const styles = {
    container: {
       backgroundColor: '#6A94E1',
-      flex: 1,
       justifyContent: 'center',
       alignItems: 'center'
    },
