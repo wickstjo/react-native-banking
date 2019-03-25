@@ -12,6 +12,8 @@ class Footer extends Component {
 const styles = {
    container: {
       backgroundColor: '#6A94E1',
+      borderTopWidth: 1,
+      borderTopColor: '#4A94D2',
    }
 }
 

@@ -21,13 +21,15 @@ class Header extends Component {
 const styles = {
    container: {
       backgroundColor: '#6A94E1',
+      borderBottomWidth: 1,
+      borderBottomColor: '#4A94D2',
       flex: 1,
    },
    innerbody: {
       flex: 1,
       flexDirection: 'row',
-      paddingLeft: 15,
-      paddingRight: 15
+      paddingLeft: 13,
+      paddingRight: 13
    },
    left: {
       flex: 1,

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import Home from './pages/home/home';
+import Profile from './pages/profile/profile';
+import Create from './pages/create/create';
 
 class App extends Component {
    render() { return (
-      <Home styles={ styles } />
+      <Create styles={ styles } />
    )}
 }
 

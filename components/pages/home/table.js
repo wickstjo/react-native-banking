@@ -4,25 +4,27 @@ import Action from './action';
 
 class Table extends Component {
    render() { return (
-      <FlatList
-         data={ this.props.data }
-         keyExtractor={ (item, index) => index.toString() }
-         renderItem={
-            ({item, index}) =>
-               <Row
-                  style={ styles }
-                  header={ item }
-                  id={ index }
-                  remove={ this.props.remove }
-               />
-         }
-      />
+      <View style={ styles.container }>
+         <FlatList
+            data={ this.props.data }
+            keyExtractor={ (item, index) => index.toString() }
+            renderItem={
+               ({item, index}) =>
+                  <Row
+                     style={ styles }
+                     header={ item }
+                     id={ index }
+                     remove={ this.props.remove }
+                  />
+            }
+         />
+      </View>
    )}
 }
 
 function Row(props) {
    return (
-      <View style={ styles.container }>
+      <View style={ styles.row }>
          <Action
             func={ props.remove }
             id={ props.id }
@@ -42,6 +44,10 @@ function Row(props) {
 
 const styles = {
    container: {
+      padding: 15,
+      paddingTop: 10
+   },
+   row: {
       borderBottomWidth: 1,
       borderBottomColor: 'gray',
       flex: 1,
