@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text } from 'react-native';
 
 class Create extends Component {
 
@@ -13,7 +13,6 @@ class Create extends Component {
    render() { return (
       <View style={ styles.container }>
          <Text>Foo</Text>
-         <TextInput />
       </View>
    )}
 }
