@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
-
 import Header from '../../shared/header';
 import Content from '../../shared/content';
 import Footer from '../../shared/footer';
+import Clickable from '../../shared/clickable';
 import Table from './table';
 
 class Home extends Component {
@@ -35,7 +34,7 @@ class Home extends Component {
    render() { return (
       <>
          <Header
-            page={ this.state.header }
+            label={ this.state.header }
             styles={ this.props.styles }
          />
          <Content size={ 15 }>
@@ -45,9 +44,11 @@ class Home extends Component {
             />
          </Content>
          <Footer size={ 1 }>
-            <Text style={ this.props.styles.font }>
-               Create Profile
-            </Text>
+            <Clickable
+               styles={ this.props.styles.font }
+               func={ this.add }
+               label={ this.state.footer }
+            />
          </Footer>
       </>
    )}

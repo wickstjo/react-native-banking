@@ -9,7 +9,9 @@ class Header extends Component {
                <Text style={ this.props.styles.font }>React Maps</Text>
             </View>
             <View style={ styles.right }>
-               <Text style={{ ...styles.alignment, ...this.props.styles.font }}>{ this.props.page }</Text>
+               <Text style={{ ...styles.alignment, ...this.props.styles.font }}>
+                  { this.props.label }
+               </Text>
             </View>
          </View>
       </View>

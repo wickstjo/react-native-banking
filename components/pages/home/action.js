@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableWithoutFeedback } from 'react-native';
 
-class Button extends Component {
+class Action extends Component {
    render() { return (
       <TouchableWithoutFeedback onPress={ () => { this.props.func(this.props.id) } }>
          <View style={ this.props.primary }>
@@ -11,4 +11,4 @@ class Button extends Component {
    )}
 }
 
-export default Button;
+export default Action;
