@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Home from './pages/home/home';
 import Profile from './pages/profile/profile';
 import Create from './pages/create/create';
+import func from './shared/func';
 
 class App extends Component {
    render() { return (

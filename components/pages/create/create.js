@@ -8,6 +8,8 @@ import Clickable from '../../shared/clickable';
 import Map from '../../shared/map';
 import Selections from './selections';
 
+import MapView from 'react-native-maps';
+
 class Create extends Component {
 
    state = {
@@ -38,7 +40,16 @@ class Create extends Component {
                   />
                </View>
                <View style={ styles.lower }>
-                  <Map />
+                  <MapView
+                     style={{ flex: 1 }}
+                     region={{
+                        latitude: 42.882004,
+                        longitude: 74.582748,
+                        latitudeDelta: 0.0922,
+                        longitudeDelta: 0.0421
+                     }}
+                     showsUserLocation={ true }
+                  />
                </View>
             </View>
          </Content>
