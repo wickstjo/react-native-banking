@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import Header from '../../shared/header';
 import Content from '../../shared/content';
@@ -8,7 +8,7 @@ import Clickable from '../../shared/clickable';
 import Map from '../../shared/map';
 import Selections from './selections';
 
-import MapView from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 class Create extends Component {
 
@@ -40,16 +40,19 @@ class Create extends Component {
                   />
                </View>
                <View style={ styles.lower }>
+               <View style={foos.container}>
                   <MapView
-                     style={{ flex: 1 }}
+                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+                     style={foos.map}
                      region={{
-                        latitude: 42.882004,
-                        longitude: 74.582748,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421
+                        latitude: 37.78825,
+                        longitude: -122.4324,
+                        latitudeDelta: 0.015,
+                        longitudeDelta: 0.0121,
                      }}
-                     showsUserLocation={ true }
-                  />
+                  >
+                  </MapView>
+               </View>
                </View>
             </View>
          </Content>
@@ -75,5 +78,18 @@ const styles = {
       flex: 6
    }
 }
+
+const foos = StyleSheet.create({
+   container: {
+     ...StyleSheet.absoluteFillObject,
+     height: 400,
+     width: 400,
+     justifyContent: 'flex-end',
+     alignItems: 'center',
+   },
+   map: {
+     ...StyleSheet.absoluteFillObject,
+   },
+  });
 
 export default Create;
