@@ -8,12 +8,10 @@ import Clickable from '../../shared/clickable';
 import Map from '../../shared/map';
 import Selections from './selections';
 
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-
 class Create extends Component {
 
    state = {
-      header: 'Create Profile',
+      header: 'Create Profile eyylmao',
       footer: 'Create',
       start: 'none',
       destination: 'none',
@@ -41,17 +39,14 @@ class Create extends Component {
                </View>
                <View style={ styles.lower }>
                <View style={foos.container}>
-                  <MapView
-                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-                     style={foos.map}
-                     region={{
+                  <Map
+                     coords={{
                         latitude: 37.78825,
                         longitude: -122.4324,
                         latitudeDelta: 0.015,
                         longitudeDelta: 0.0121,
                      }}
-                  >
-                  </MapView>
+                  />
                </View>
                </View>
             </View>
@@ -81,11 +76,7 @@ const styles = {
 
 const foos = StyleSheet.create({
    container: {
-     ...StyleSheet.absoluteFillObject,
-     height: 400,
-     width: 400,
-     justifyContent: 'flex-end',
-     alignItems: 'center',
+      flex: 1,
    },
    map: {
      ...StyleSheet.absoluteFillObject,

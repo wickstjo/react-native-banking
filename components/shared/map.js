@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 class Create extends Component {
 
@@ -11,16 +11,17 @@ class Create extends Component {
    }
 
    render() { return (
-      <View style={ styles.container }>
-         <Text>Foo</Text>
-      </View>
+      <MapView
+         provider={ PROVIDER_GOOGLE }
+         style={ styles.container }
+         region={ this.props.coords }
+      />
    )}
 }
 
 const styles = {
    container: {
-      flex: 1,
-      backgroundColor: '#9AFE9A'
+      flex: 1
    }
 }
 
