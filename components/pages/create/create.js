@@ -11,7 +11,7 @@ import Selections from './selections';
 class Create extends Component {
 
    state = {
-      header: 'Create Profile eyylmao',
+      header: 'Create Profile',
       footer: 'Create',
       start: 'none',
       destination: 'none',
@@ -23,7 +23,7 @@ class Create extends Component {
             label={ this.state.header }
             styles={ this.props.styles }
          />
-         <Content size={ 15 }>
+         <Content size={ 13 }>
             <View style={ styles.container }>
                <View style={ styles.upper }>
                   <Selections
@@ -38,7 +38,6 @@ class Create extends Component {
                   />
                </View>
                <View style={ styles.lower }>
-               <View style={foos.container}>
                   <Map
                      coords={{
                         latitude: 37.78825,
@@ -48,10 +47,9 @@ class Create extends Component {
                      }}
                   />
                </View>
-               </View>
             </View>
          </Content>
-         <Footer size={ 1 }>
+         <Footer>
             <Clickable
                styles={ this.props.styles.font }
                func={ this.add }
@@ -70,17 +68,8 @@ const styles = {
       flex: 1
    },
    lower: {
-      flex: 6
+      flex: 5
    }
 }
-
-const foos = StyleSheet.create({
-   container: {
-      flex: 1,
-   },
-   map: {
-     ...StyleSheet.absoluteFillObject,
-   },
-  });
 
 export default Create;

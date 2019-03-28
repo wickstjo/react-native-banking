@@ -1,28 +1,21 @@
 import React, { Component } from 'react';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { View } from 'react-native';
+// import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+// <MapView provider={ PROVIDER_GOOGLE } style={ styles.container } region={ this.props.coords } />
 
-class Create extends Component {
-
-   state = {
-      header: 'Create Profile',
-      footer: 'Create',
-      start: 'none',
-      destination: 'none',
-   }
-
+class Map extends Component {
    render() { return (
-      <MapView
-         provider={ PROVIDER_GOOGLE }
+      <View
          style={ styles.container }
-         region={ this.props.coords }
       />
    )}
 }
 
 const styles = {
    container: {
-      flex: 1
+      flex: 1,
+      backgroundColor: '#84DD84'
    }
 }
 
-export default Create;
+export default Map;

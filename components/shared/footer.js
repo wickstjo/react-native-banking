@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 class Footer extends Component {
    render() { return (
-      <View style={{ ...styles.container, ...{ flex: this.props.size } }}>
+      <View style={ styles.container}>
          { this.props.children }
       </View>
    )}
@@ -11,6 +11,7 @@ class Footer extends Component {
 
 const styles = {
    container: {
+      flex: 1,
       backgroundColor: '#6A94E1',
       borderTopWidth: 1,
       borderTopColor: '#4A94D2',
