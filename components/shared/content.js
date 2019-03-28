@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 class Content extends Component {
    render() { return (
-      <View style={{ ...styles.container, ...{ flex: this.props.size } }}>
+      <View style={ styles.container }>
          { this.props.children }
       </View>
    )}
@@ -11,6 +11,7 @@ class Content extends Component {
 
 const styles = {
    container: {
+      flex: 13,
       backgroundColor: 'white',
    }
 }

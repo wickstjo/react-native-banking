@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-class func {
+class Route {
    
    foobar() {
       const foo = axios.get('https://jsonplaceholder.typicode.com/users');
@@ -15,4 +15,4 @@ class func {
    }
 }
 
-export default new func();
+export default new Route();

@@ -45,7 +45,7 @@ function Row(props) {
 const styles = {
    container: {
       padding: 15,
-      paddingTop: 10
+      paddingTop: 5
    },
    row: {
       borderBottomWidth: 1,
@@ -55,11 +55,11 @@ const styles = {
    },
    left: {
       flex: 2,
-      padding: 5,
+      padding: 10,
    },
    right: {
       flex: 1,
-      padding: 5,
+      padding: 10,
    },
    text: {
       textAlign: 'right'

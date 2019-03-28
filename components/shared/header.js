@@ -6,10 +6,10 @@ class Header extends Component {
       <View style={ styles.container }>
          <View style={ styles.innerbody }>
             <View style={ styles.left }>
-               <Text style={ this.props.styles.font }>React Maps</Text>
+               <Text style={ styles.font }>React Maps</Text>
             </View>
             <View style={ styles.right }>
-               <Text style={{ ...styles.alignment, ...this.props.styles.font }}>
+               <Text style={{ ...styles.alignment, ...styles.font }}>
                   { this.props.label }
                </Text>
             </View>
@@ -41,6 +41,17 @@ const styles = {
    },
    alignment: {
       textAlign: 'right',
+   },
+   font: {
+      fontSize: 15,
+      fontFamily: 'verdana',
+      color: 'white',
+      textShadowColor: '#0E375C',
+      textShadowOffset: {
+         width: 1,
+         height: 1
+      },
+      textShadowRadius: 1
    }
 }
 
