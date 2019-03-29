@@ -2,30 +2,56 @@ import React, { Component } from 'react';
 import { Text, View, TouchableWithoutFeedback } from 'react-native';
 
 class Footer extends Component {
+
+   secondary = () => {
+      if (this.props.secondary_label !== undefined) {
+         return <Block
+            func={ this.props.secondary_func }
+            label={ this.props.secondary_label }
+            styles={ styles.secondary } 
+         />
+      }
+   }
+
    render() { return (
       <View style={ styles.container }>
-         <TouchableWithoutFeedback onPress={ this.props.func }>
-            <View style={ styles.clickable }>
-               <Text style={ styles.font }>
-                  { this.props.label }
-               </Text>
-            </View>
-         </TouchableWithoutFeedback>
+         <Block
+            func={ this.props.func }
+            label={ this.props.label }
+         />
+         { this.secondary() }
       </View>
    )}
+}
+
+function Block(props) {
+   return (
+      <TouchableWithoutFeedback onPress={ props.func }>
+         <View style={{ ...styles.clickable, ...props.styles }}>
+            <Text style={ styles.font }>
+               { props.label }
+            </Text>
+         </View>
+      </TouchableWithoutFeedback>
+   )
 }
 
 const styles = {
    container: {
       flex: 1,
+      flexDirection: 'row',
       backgroundColor: '#6A94E1',
       borderTopWidth: 1,
-      borderTopColor: '#4A94D2',
+      borderTopColor: 'white',
    },
    clickable: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
+   },
+   secondary: {
+      borderLeftWidth: 1,
+      borderLeftColor: 'white',
    },
    font: {
       fontSize: 15,

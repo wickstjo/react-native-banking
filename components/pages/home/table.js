@@ -7,14 +7,15 @@ class Table extends Component {
       <View style={ styles.container }>
          <FlatList
             data={ this.props.data }
-            keyExtractor={ (item, index) => index.toString() }
+            keyExtractor={( item, index ) => index.toString() }
             renderItem={
-               ({item, index}) =>
+               ({ item, index }) =>
                   <Row
                      style={ styles }
                      header={ item }
                      id={ index }
                      remove={ this.props.remove }
+                     open={ this.props.open }
                   />
             }
          />
@@ -26,7 +27,7 @@ function Row(props) {
    return (
       <View style={ styles.row }>
          <Action
-            func={ props.remove }
+            func={ props.open }
             id={ props.id }
             text={ props.header.toUpperCase() }
             primary={ styles.left }
@@ -45,7 +46,7 @@ function Row(props) {
 const styles = {
    container: {
       padding: 15,
-      paddingTop: 5
+      paddingTop: 4
    },
    row: {
       borderBottomWidth: 1,

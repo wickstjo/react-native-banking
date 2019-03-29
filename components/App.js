@@ -7,6 +7,15 @@ import Create from './pages/create/create';
 import route from './funcs/route';
 
 class App extends Component {
+
+   state = {
+      profiles: [
+         'first',
+         'second',
+         'third'
+      ]
+   }
+
    render() { return (
       <AppContainer />
    )}

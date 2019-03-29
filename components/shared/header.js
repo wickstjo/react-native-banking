@@ -22,7 +22,7 @@ const styles = {
    container: {
       backgroundColor: '#6A94E1',
       borderBottomWidth: 1,
-      borderBottomColor: '#4A94D2',
+      borderBottomColor: 'white',
       flex: 1,
    },
    innerbody: {

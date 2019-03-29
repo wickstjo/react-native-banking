@@ -24,6 +24,7 @@ const styles = {
    container: {
       flex: 1,
       padding: 5,
+      paddingTop: 4,
       borderBottomColor: '#BCBCBC',
       borderBottomWidth: 1,
    },

@@ -3,9 +3,11 @@ import { Text, View, TouchableWithoutFeedback } from 'react-native';
 
 class Action extends Component {
    render() { return (
-      <TouchableWithoutFeedback onPress={ () => { this.props.func(this.props.id) } }>
+      <TouchableWithoutFeedback onPress={() => { this.props.func(this.props.id, this.props.header) }}>
          <View style={ this.props.primary }>
-            <Text style={ this.props.secondary }>{ this.props.text }</Text>
+            <Text style={ this.props.secondary }>
+               { this.props.text }
+            </Text>
          </View>
       </TouchableWithoutFeedback>
    )}
