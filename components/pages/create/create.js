@@ -12,19 +12,19 @@ class Create extends Component {
    state = {
       header: 'Create Profile',
       footer: 'Create',
-      footer_secondary: 'Back to Profiles',
+      footer_secondary: 'Cancel',
       start: 'none',
       destination: 'none',
    }
 
-   footer_primary= () => {
+   footer_primary = () => {
       this.props.navigation.navigate(
          'Profile',
          { name: 'Jane' }
       )
    }
 
-   footer_secondary= () => {
+   footer_secondary = () => {
       this.props.navigation.navigate('Home')
    }
 
@@ -61,7 +61,7 @@ class Create extends Component {
             label={ this.state.footer_secondary }
             func={ this.footer_secondary }
             secondary_label={ this.state.footer }
-            secondary_func={ this.footer_primary }
+            secondary_func={ this.props.add }
          />
       </>
    )}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { YellowBox } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import Home from './pages/home/home';
@@ -16,32 +17,59 @@ class App extends Component {
       ]
    }
 
-   render() { return (
+   // ADD ITEM
+   add = (id, header) => {
+      this.setState({
+         profiles: [...this.state.profiles, 'foo']
+      })
+   }
+
+   // REMOVE ITEM
+   remove = (id, header) => {
+      this.setState({
+         profiles: this.state.profiles.filter((value, index) => index !== id)
+      })
+   }
+
+   MainNavigator = createStackNavigator({
+      Home: {
+         screen: (props) => {
+            return <Home
+               profiles={ this.state.profiles }
+               navigation={ props.navigation }
+               remove={ this.remove }
+            />
+         },
+         navigationOptions: {
+            header: null
+         }
+      },
+      Profile: {
+         screen: Profile,
+         navigationOptions: {
+            header: null
+         }
+      },
+      Create: {
+         screen: (props) => {
+            return <Create
+               navigation={ props.navigation }
+               add={ this.add }
+            />
+         },
+         navigationOptions: {
+            header: null
+         }
+      },
+   });
+
+   render() {
+      YellowBox.ignoreWarnings(['ViewPagerAndroid', 'Slider']);
+      const AppContainer = createAppContainer(this.MainNavigator);
+      
+   return (
       <AppContainer />
    )}
 }
-
-const MainNavigator = createStackNavigator({
-   Home: {
-      screen: Home,
-      navigationOptions: {
-         header: null
-      }
-   },
-   Profile: {
-      screen: Profile,
-      navigationOptions: {
-         header: null
-      }
-   },
-   Create: {
-      screen: Create,
-      navigationOptions: {
-         header: null
-      }
-   },
-});
-
-const AppContainer = createAppContainer(MainNavigator);
 
 export default App;

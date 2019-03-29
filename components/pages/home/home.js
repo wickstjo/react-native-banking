@@ -20,20 +20,6 @@ class Home extends Component {
       this.props.navigation.navigate('Create')
    }
 
-   // ADD ITEM
-   add = (id, header) => {
-      this.setState({
-         profiles: [...this.state.profiles, 'foo']
-      })
-   }
-
-   // REMOVE ITEM
-   remove = (id, header) => {
-      this.setState({
-         profiles: this.state.profiles.filter((value, index) => index !== id)
-      })
-   }
-
    // REMOVE ITEM
    open = (id, header) => {
       this.props.navigation.navigate(
@@ -49,8 +35,8 @@ class Home extends Component {
          />
          <Content>
             <Table
-               data={ this.state.profiles }
-               remove={ this.remove }
+               data={ this.props.profiles }
+               remove={ this.props.remove }
                open={ this.open }
             />
          </Content>
