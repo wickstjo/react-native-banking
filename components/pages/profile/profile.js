@@ -11,6 +11,11 @@ class Profile extends Component {
       footer: 'Profile Menu',
    }
 
+   footer_func = () => {
+      this.props.navigation.navigate('Home')
+      // this.props.navigation.getParam('name')
+   }
+
    render() { return (
       <>
          <Header
@@ -21,7 +26,7 @@ class Profile extends Component {
          </Content>
          <Footer
             label={ this.state.footer }
-            func={ this.add }
+            func={ this.footer_func }
          />
       </>
    )}

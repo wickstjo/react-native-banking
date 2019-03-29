@@ -16,6 +16,13 @@ class Create extends Component {
       destination: 'none',
    }
 
+   footer_func = () => {
+      this.props.navigation.navigate(
+         'Profile',
+         { name: 'Jane' }
+      )
+   }
+
    render() { return (
       <>
          <Header
@@ -49,7 +56,7 @@ class Create extends Component {
          </Content>
          <Footer
             label={ this.state.footer }
-            func={ this.add }
+            func={ this.footer_func }
          />
       </>
    )}

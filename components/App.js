@@ -16,21 +16,18 @@ const MainNavigator = createStackNavigator({
    Home: {
       screen: Home,
       navigationOptions: {
-         title: 'Home',
          header: null
       }
    },
    Profile: {
       screen: Profile,
       navigationOptions: {
-         title: 'Profile',
          header: null
       }
    },
    Create: {
       screen: Create,
       navigationOptions: {
-         title: 'Create',
          header: null
       }
    },

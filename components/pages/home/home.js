@@ -16,6 +16,10 @@ class Home extends Component {
       ]
    }
 
+   footer_func = () => {
+      this.props.navigation.navigate('Create')
+   }
+
    // ADD ITEM
    add = () => {
       this.setState({
@@ -43,7 +47,7 @@ class Home extends Component {
          </Content>
          <Footer
             label={ this.state.footer }
-            func={ this.add }
+            func={ this.footer_func }
          />
       </>
    )}
