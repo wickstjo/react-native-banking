@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+
 import Header from '../../shared/header';
 import Content from '../../shared/content';
 import Footer from '../../shared/footer';
+import Clickable from '../../shared/clickable';
 import Table from './table';
 
 class Home extends Component {
 
    state = {
-      header: 'Saved Profiles',
-      footer: 'Create Profile',
       profiles: [
          'first',
          'second',
@@ -16,7 +16,14 @@ class Home extends Component {
       ]
    }
 
-   footer_func = () => {
+   // REMOVE ITEM
+   remove = (id, header) => {
+      this.setState({
+         profiles: this.state.profiles.filter((value, index) => index !== id)
+      })
+   }
+
+   goto_create = () => {
       this.props.navigation.navigate('Create')
    }
 
@@ -30,9 +37,7 @@ class Home extends Component {
 
    render() { return (
       <>
-         <Header
-            label={ this.state.header }
-         />
+         <Header label={ 'Saved Profiles' }/>
          <Content>
             <Table
                data={ this.props.profiles }
@@ -40,10 +45,12 @@ class Home extends Component {
                open={ this.open }
             />
          </Content>
-         <Footer
-            label={ this.state.footer }
-            func={ this.footer_func }
-         />
+         <Footer>
+            <Clickable
+               label={ 'Create Profile' }
+               func={ this.goto_create }
+            />
+         </Footer>
       </>
    )}
 }

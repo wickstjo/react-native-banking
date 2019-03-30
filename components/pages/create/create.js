@@ -4,6 +4,7 @@ import { View } from 'react-native';
 import Header from '../../shared/header';
 import Content from '../../shared/content';
 import Footer from '../../shared/footer';
+import Clickable from '../../shared/clickable';
 import Map from '../../shared/map';
 import Inputs from './inputs/inputs';
 
@@ -12,6 +13,13 @@ class Create extends Component {
    state = {
       name: this.props.name,
       waypoints: this.props.waypoints,
+   }
+
+   // ADD ITEM
+   add = (id, header) => {
+      this.setState({
+         profiles: [...this.state.profiles, 'foo']
+      })
    }
 
    primary = () => {
@@ -60,12 +68,16 @@ class Create extends Component {
                </View>
             </View>
          </Content>
-         <Footer
-            label={ 'Cancel' }
-            func={ this.secondary }
-            secondary_label={ 'Save' }
-            secondary_func={ this.primary }
-         />
+         <Footer>
+            <Clickable
+               label={ 'Cancel' }
+               func={ this.secondary }
+            />
+            <Clickable
+               label={ 'Save' }
+               func={ this.secondary }
+            />
+         </Footer>
       </>
    )}
 }

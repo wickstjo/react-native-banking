@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+
 import Header from '../../shared/header';
 import Content from '../../shared/content';
 import Footer from '../../shared/footer';
+import Clickable from '../../shared/clickable';
 import Map from '../../shared/map';
 
 class Profile extends Component {
@@ -11,23 +13,23 @@ class Profile extends Component {
       footer: 'Profile Menu',
    }
 
-   footer_func = () => {
+   goto_home = () => {
       this.props.navigation.navigate('Home')
       // this.props.navigation.getParam('name')
    }
 
    render() { return (
       <>
-         <Header
-            label={ this.state.header }
-         />
+         <Header label={ this.state.header }/>
          <Content>
             <Map />
          </Content>
-         <Footer
-            label={ this.state.footer }
-            func={ this.footer_func }
-         />
+         <Footer>
+            <Clickable
+               label={ 'View Profile' }
+               func={ this.goto_home }
+            />
+         </Footer>
       </>
    )}
 }
