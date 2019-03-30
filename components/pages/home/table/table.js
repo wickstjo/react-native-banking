@@ -13,7 +13,7 @@ class Table extends Component {
                   <Row
                      label={ item }
                      id={ index }
-                     remove_route={ this.props.remove_route }
+                     remove={ this.props.remove }
                      open={ this.props.open }
                   />
             }

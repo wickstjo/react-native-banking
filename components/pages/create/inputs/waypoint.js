@@ -27,7 +27,7 @@ class Waypoint extends Component {
                </View>
             </View>
          </TouchableWithoutFeedback>
-         <TouchableWithoutFeedback onPress={() => { this.props.func(this.state.waypoint) }}>
+         <TouchableWithoutFeedback onPress={ this.props.add }>
             <View style={ styles.button }>
                <Text>Add</Text>
             </View>

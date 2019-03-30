@@ -15,27 +15,15 @@ class Create extends Component {
       waypoints: this.props.waypoints,
    }
 
-   // ADD ITEM
-   add = (id, header) => {
-      this.setState({
-         profiles: [...this.state.profiles, 'foo']
-      })
-   }
-
-   primary = () => {
+   goto_profile = () => {
       this.props.navigation.navigate(
          'Profile',
          { name: 'Jane' }
       )
    }
 
-   secondary = () => {
+   goto_home = () => {
       this.props.navigation.navigate('Home')
-   }
-
-   add = () => {
-      //this.props.navigation.navigate('Home')
-      this.props.storage.add_profile('profile')
    }
 
    update_name = (value) => {
@@ -44,47 +32,44 @@ class Create extends Component {
       })
    }
 
-   add_waypoint = (value) => {
-      this.setState({
-         waypoints: [...this.state.waypoints, value]
-      })
+   render() {
+      const { params } = this.props.navigation.state;
+      return (
+         <>
+            <Header label={ 'Modify Route' } />
+            <Content>
+               <View style={ styles.container }>
+                  <View style={ styles.upper }>
+                     <Inputs
+                        update_name={ this.update_name }
+                        add_waypoint={ params.add }
+                     />
+                  </View>
+                  <View style={ styles.lower }>
+                     <Map
+                        coords={{
+                           latitude: 37.78825,
+                           longitude: -122.4324,
+                           latitudeDelta: 0.015,
+                           longitudeDelta: 0.0121,
+                        }}
+                     />
+                  </View>
+               </View>
+            </Content>
+            <Footer>
+               <Clickable
+                  label={ 'Cancel' }
+                  func={ this.goto_home }
+               />
+               <Clickable
+                  label={ 'Save' }
+                  func={ params.add }
+               />
+            </Footer>
+         </>
+      )
    }
-
-   render() { return (
-      <>
-         <Header label={ 'Modify Route' } />
-         <Content>
-            <View style={ styles.container }>
-               <View style={ styles.upper }>
-                  <Inputs
-                     update_name={ this.update_name }
-                     add_waypoint={ this.add_waypoint }
-                  />
-               </View>
-               <View style={ styles.lower }>
-                  <Map
-                     coords={{
-                        latitude: 37.78825,
-                        longitude: -122.4324,
-                        latitudeDelta: 0.015,
-                        longitudeDelta: 0.0121,
-                     }}
-                  />
-               </View>
-            </View>
-         </Content>
-         <Footer>
-            <Clickable
-               label={ 'Cancel' }
-               func={ this.secondary }
-            />
-            <Clickable
-               label={ 'Save' }
-               func={ this.props.add_route }
-            />
-         </Footer>
-      </>
-   )}
 }
 
 const styles = {

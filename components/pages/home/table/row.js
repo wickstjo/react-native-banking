@@ -13,7 +13,7 @@ class Row extends Component {
          <Block
             label={ 'Remove' }
             styles={ styles.secondary }
-            func={ this.props.remove_route }
+            func={ this.props.remove }
             id={ this.props.id }
          />
       </View>

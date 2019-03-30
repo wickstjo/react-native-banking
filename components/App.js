@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { YellowBox } from 'react-native';
+import { YellowBox, Alert } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import Home from './pages/home/home';
@@ -13,13 +13,13 @@ class App extends Component {
       routes: storage.get_profiles()
    }
 
-   add_route = () => {
+   add = () => {
       this.setState({
          routes: [...this.state.routes, 'foo']
       })
    }
 
-   remove_route = (id, header) => {
+   remove = (id, header) => {
       this.setState({
          routes: this.state.routes.filter((value, index) => index !== id)
       })
@@ -28,29 +28,22 @@ class App extends Component {
    render() {  
       const MainNavigator = createStackNavigator({
          Home: {
-            screen: (props) => {
-               return <Home
-                  navigation={ props.navigation }
-                  routes={ this.state.routes }
-                  remove_route={ this.remove_route }
-               />
-            },
+            screen: Home,
             navigationOptions: {
                header: null,
             },
             params: {
-               product: 'Playstation'
+               routes: this.state.routes,
+               remove: this.remove
             }
          },
          Create: {
-            screen: (props) => {
-               return <Create
-                  navigation={ props.navigation }
-                  add_route={ this.add_route }
-               />
-            },
+            screen: Create,
             navigationOptions: {
                header: null,
+            },
+            params: {
+               add: this.add
             }
          },
          Profile: {
@@ -63,7 +56,7 @@ class App extends Component {
 
       YellowBox.ignoreWarnings(['ViewPagerAndroid', 'Slider']);
       const AppContainer = createAppContainer(MainNavigator);
-      return ( <AppContainer />)
+      return ( <AppContainer /> )
    }
 }
 
