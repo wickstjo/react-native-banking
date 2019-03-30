@@ -33,6 +33,11 @@ class Create extends Component {
       this.props.navigation.navigate('Home')
    }
 
+   add = () => {
+      //this.props.navigation.navigate('Home')
+      this.props.storage.add_profile('profile')
+   }
+
    update_name = (value) => {
       this.setState({
          name: value
@@ -75,7 +80,7 @@ class Create extends Component {
             />
             <Clickable
                label={ 'Save' }
-               func={ this.secondary }
+               func={ this.props.add_route }
             />
          </Footer>
       </>

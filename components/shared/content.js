@@ -11,7 +11,7 @@ class Content extends Component {
 
 const styles = {
    container: {
-      flex: 13,
+      flex: 1,
       backgroundColor: 'white',
    }
 }

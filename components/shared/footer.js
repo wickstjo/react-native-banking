@@ -11,7 +11,6 @@ class Footer extends Component {
 
 const styles = {
    container: {
-      flex: 1,
       flexDirection: 'row',
       backgroundColor: '#6A94E1',
    }
