@@ -5,44 +5,47 @@ import Header from '../../shared/header';
 import Content from '../../shared/content';
 import Footer from '../../shared/footer';
 import Map from '../../shared/map';
-import Selections from './selections';
+import Inputs from './inputs/inputs';
 
 class Create extends Component {
 
    state = {
-      header: 'Create Profile',
-      footer: 'Create',
-      footer_secondary: 'Cancel',
-      start: 'none',
-      destination: 'none',
+      name: this.props.name,
+      waypoints: this.props.waypoints,
    }
 
-   footer_primary = () => {
+   primary = () => {
       this.props.navigation.navigate(
          'Profile',
          { name: 'Jane' }
       )
    }
 
-   footer_secondary = () => {
+   secondary = () => {
       this.props.navigation.navigate('Home')
+   }
+
+   update_name = (value) => {
+      this.setState({
+         name: value
+      })
+   }
+
+   add_waypoint = (value) => {
+      this.setState({
+         waypoints: [...this.state.waypoints, value]
+      })
    }
 
    render() { return (
       <>
-         <Header label={ this.state.header } />
+         <Header label={ 'Modify Route' } />
          <Content>
             <View style={ styles.container }>
                <View style={ styles.upper }>
-                  <Selections
-                     start={ this.state.start }
-                     destination={ this.state.destination }
-                     update_start ={
-                        (value) => { this.setState({ start: value }) }
-                     }
-                     update_destination ={
-                        (value) => { this.setState({ destination: value }) }
-                     }
+                  <Inputs
+                     update_name={ this.update_name }
+                     add_waypoint={ this.add_waypoint }
                   />
                </View>
                <View style={ styles.lower }>
@@ -58,10 +61,10 @@ class Create extends Component {
             </View>
          </Content>
          <Footer
-            label={ this.state.footer_secondary }
-            func={ this.footer_secondary }
-            secondary_label={ this.state.footer }
-            secondary_func={ this.props.add }
+            label={ 'Cancel' }
+            func={ this.secondary }
+            secondary_label={ 'Save' }
+            secondary_func={ this.primary }
          />
       </>
    )}

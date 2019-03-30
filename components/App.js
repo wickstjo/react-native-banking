@@ -32,6 +32,19 @@ class App extends Component {
    }
 
    MainNavigator = createStackNavigator({
+      Create: {
+         screen: (props) => {
+            return <Create
+               navigation={ props.navigation }
+               add={ this.add }
+               name={ '' }
+               waypoints={ [] }
+            />
+         },
+         navigationOptions: {
+            header: null
+         }
+      },
       Home: {
          screen: (props) => {
             return <Home
@@ -49,18 +62,7 @@ class App extends Component {
          navigationOptions: {
             header: null
          }
-      },
-      Create: {
-         screen: (props) => {
-            return <Create
-               navigation={ props.navigation }
-               add={ this.add }
-            />
-         },
-         navigationOptions: {
-            header: null
-         }
-      },
+      }
    });
 
    render() {
