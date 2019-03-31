@@ -13,9 +13,9 @@ class App extends Component {
       routes: storage.get_profiles()
    }
 
-   add = () => {
+   add = (name) => {
       this.setState({
-         routes: [...this.state.routes, 'foo']
+         routes: [...this.state.routes, name]
       })
    }
 
@@ -25,8 +25,17 @@ class App extends Component {
       })
    }
 
-   render() {  
+   render() {
       const MainNavigator = createStackNavigator({
+         Create: {
+            screen: Create,
+            navigationOptions: {
+               header: null,
+            },
+            params: {
+               add: this.add
+            }
+         },
          Home: {
             screen: Home,
             navigationOptions: {
@@ -35,15 +44,6 @@ class App extends Component {
             params: {
                routes: this.state.routes,
                remove: this.remove
-            }
-         },
-         Create: {
-            screen: Create,
-            navigationOptions: {
-               header: null,
-            },
-            params: {
-               add: this.add
             }
          },
          Profile: {

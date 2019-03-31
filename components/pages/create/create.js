@@ -11,8 +11,8 @@ import Inputs from './inputs/inputs';
 class Create extends Component {
 
    state = {
-      name: this.props.name,
-      waypoints: this.props.waypoints,
+      name: 'no name',
+      waypoints: ['foo', 'bar'],
    }
 
    goto_profile = () => {
@@ -26,9 +26,15 @@ class Create extends Component {
       this.props.navigation.navigate('Home')
    }
 
-   update_name = (value) => {
+   update_name = (text) => {
       this.setState({
-         name: value
+         name: text
+      })
+   }
+
+   add_waypoint = (value) => {
+      this.setState({
+         waypoints: [...this.state.waypoints, value]
       })
    }
 
@@ -42,17 +48,13 @@ class Create extends Component {
                   <View style={ styles.upper }>
                      <Inputs
                         update_name={ this.update_name }
-                        add_waypoint={ params.add }
+                        add_waypoint={ this.add_waypoint }
                      />
                   </View>
                   <View style={ styles.lower }>
                      <Map
-                        coords={{
-                           latitude: 37.78825,
-                           longitude: -122.4324,
-                           latitudeDelta: 0.015,
-                           longitudeDelta: 0.0121,
-                        }}
+                        waypoints={ this.state.waypoints }
+                        name={ this.state.name }
                      />
                   </View>
                </View>
@@ -64,7 +66,7 @@ class Create extends Component {
                />
                <Clickable
                   label={ 'Save' }
-                  func={ params.add }
+                  func={() => { params.add(this.state.name) }}
                />
             </Footer>
          </>

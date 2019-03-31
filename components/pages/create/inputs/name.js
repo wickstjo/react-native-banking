@@ -19,7 +19,7 @@ class Name extends Component {
                   placeholder={ `None` }
                   style={ styles.textbox }
                   ref={ component => this.input_field = component }
-                  onChangeText={ (text) => { this.props.func(text) } }
+                  onChangeText={ this.props.update_name }
                />
             </View>
          </View>

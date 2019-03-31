@@ -7,8 +7,21 @@ class Waypoint extends Component {
       waypoint: ''
    }
 
-   // CREATE REFERENCE
    input_field = React.createRef();
+
+   add = () => {
+      if (this.state.waypoint !== '') {
+         this.props.add_waypoint(this.state.waypoint);
+         this.input_field.clear();
+         this.update_waypoint('');
+      }
+   }
+
+   update_waypoint = (text) => {
+      this.setState({
+         waypoint: text
+      })
+   }
 
    render() { return (
       <View style={ styles.container }>
@@ -22,12 +35,12 @@ class Waypoint extends Component {
                      placeholder={ 'None' }
                      style={ styles.textbox }
                      ref={ component => this.input_field = component }
-                     onChangeText={ (text) => { setState({ waypoint: text }) }}
+                     onChangeText={ this.update_waypoint }
                   />
                </View>
             </View>
          </TouchableWithoutFeedback>
-         <TouchableWithoutFeedback onPress={ this.props.add }>
+         <TouchableWithoutFeedback onPress={ this.add }>
             <View style={ styles.button }>
                <Text>Add</Text>
             </View>

@@ -8,11 +8,11 @@ class Inputs extends Component {
       <View style={ styles.container }>
          <Name
             label={ 'Route Name' }
-            func={ this.props.update_name }
+            update_name={ this.props.update_name }
          />
          <Waypoint
             label={ 'Waypoint' }
-            func={ this.props.add_waypoint }
+            add_waypoint={ this.props.add_waypoint }
          />
       </View>
    )}
