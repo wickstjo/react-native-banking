@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { YellowBox, Alert } from 'react-native';
+import { YellowBox } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import Home from './pages/home/home';
@@ -51,7 +51,7 @@ class App extends Component {
             navigationOptions: {
                header: null
             }
-         }
+         },
       });
 
       YellowBox.ignoreWarnings(['ViewPagerAndroid', 'Slider']);

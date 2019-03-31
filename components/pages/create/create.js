@@ -8,11 +8,13 @@ import Clickable from '../../shared/clickable';
 import Map from '../../shared/map';
 import Inputs from './inputs/inputs';
 
+import apis from '../../funcs/apis';
+
 class Create extends Component {
 
    state = {
       name: 'no name',
-      waypoints: ['foo', 'bar'],
+      waypoints: []
    }
 
    goto_profile = () => {
@@ -33,8 +35,12 @@ class Create extends Component {
    }
 
    add_waypoint = (value) => {
-      this.setState({
-         waypoints: [...this.state.waypoints, value]
+      apis.query(value).then((response) => {
+         if (response.data.status !== 'ZERO_RESULTS') {
+            this.setState({
+               waypoints: [...this.state.waypoints, [value, response.data.results[0].geometry.location]]
+            })
+         }  
       })
    }
 
@@ -70,8 +76,7 @@ class Create extends Component {
                />
             </Footer>
          </>
-      )
-   }
+   )}
 }
 
 const styles = {
