@@ -8,14 +8,6 @@ import Table from './table/table';
 
 class Home extends Component {
 
-   state = {
-      profiles: [
-         'First',
-         'Second',
-         'Third',
-      ]
-   }
-
    // REMOVE ITEM
    open = (id, header) => {
       this.props.navigation.navigate(

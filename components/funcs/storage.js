@@ -1,17 +1,15 @@
+import { AsyncStorage } from 'react-native';
+
 class Storage {
+   key = 'native-storage'
 
-   profiles = [
-      'foo',
-      'bar',
-      'biz'
-   ]
-
-   get_profiles() {
-      return this.profiles;
+   routes() {
+      return AsyncStorage.getItem(this.key);
    }
 
-   add_profile(profile) {
-      this.profiles = [...this.profiles, profile]
+   save(list) {
+      const object = { routes: list }
+      AsyncStorage.setItem(this.key, JSON.stringify(object));
    }
 }
 

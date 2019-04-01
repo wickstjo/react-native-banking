@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { YellowBox } from 'react-native';
+import { YellowBox, Alert } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import Home from './pages/home/home';
@@ -10,32 +10,43 @@ import storage from './funcs/storage';
 class App extends Component {
 
    state = {
-      routes: storage.get_profiles()
+      routes: []
+   }
+
+   componentWillMount() {
+      storage.routes().then((response) => {
+         this.setState({
+            routes: JSON.parse(response).routes
+         })
+      });
    }
 
    add = (name) => {
-      this.setState({
-         routes: [...this.state.routes, name]
-      })
+      new Promise((resolve, reject) => {
+         this.setState({
+            routes: [...this.state.routes, name]
+         })
+         resolve();
+
+      }).then(() => {
+         storage.save(this.state.routes);
+      });
    }
 
    remove = (id, header) => {
-      this.setState({
-         routes: this.state.routes.filter((value, index) => index !== id)
-      })
+      new Promise((resolve, reject) => {
+         this.setState({
+            routes: this.state.routes.filter((value, index) => index !== id)
+         })
+         resolve();
+
+      }).then(() => {
+         storage.save(this.state.routes);
+      });
    }
 
    render() {
       const MainNavigator = createStackNavigator({
-         Create: {
-            screen: Create,
-            navigationOptions: {
-               header: null,
-            },
-            params: {
-               add: this.add
-            }
-         },
          Home: {
             screen: Home,
             navigationOptions: {
@@ -46,6 +57,15 @@ class App extends Component {
                remove: this.remove
             }
          },
+         Create: {
+            screen: Create,
+            navigationOptions: {
+               header: null,
+            },
+            params: {
+               add: this.add
+            }
+         },
          Profile: {
             screen: Profile,
             navigationOptions: {
@@ -54,7 +74,7 @@ class App extends Component {
          },
       });
 
-      YellowBox.ignoreWarnings(['ViewPagerAndroid', 'Slider']);
+      YellowBox.ignoreWarnings(['ViewPagerAndroid', 'Slider', 'Async Storage']);
       const AppContainer = createAppContainer(MainNavigator);
       return ( <AppContainer /> )
    }
