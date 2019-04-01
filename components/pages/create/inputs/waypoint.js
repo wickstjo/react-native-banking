@@ -10,11 +10,9 @@ class Waypoint extends Component {
    input_field = React.createRef();
 
    add = () => {
-      if (this.state.waypoint !== '') {
-         this.props.add_waypoint(this.state.waypoint);
-         this.input_field.clear();
-         this.update_waypoint('');
-      }
+      this.props.add_waypoint(this.state.waypoint);
+      this.input_field.clear();
+      this.update_waypoint('');
    }
 
    update_waypoint = (text) => {
