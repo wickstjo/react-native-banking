@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, ToastAndroid } from 'react-native';
 
 import Header from '../../shared/header';
 import Content from '../../shared/content';
@@ -13,39 +13,48 @@ import apis from '../../funcs/apis';
 class Create extends Component {
 
    state = {
-      name: 'no name',
+      name: '',
       waypoints: []
    }
 
-   goto_profile = () => {
-      this.props.navigation.navigate(
-         'Profile',
-         { name: 'Jane' }
-      )
-   }
-
-   goto_home = () => {
-      this.props.navigation.navigate('Home')
-   }
-
+   // UPDATE ROUTE NAME
    update_name = (text) => {
       this.setState({
          name: text
       })
    }
 
-   add_waypoint = (value) => {
-      apis.query(value).then((response) => {
+   // ADD WAYPOINT TO ROUTE
+   add_waypoint = (address) => {
+
+      // CONVERT ADDRESS TO COORDS WITH API
+      apis.query(address).then((response) => {
+
+         // IF SOMETHING IS FOUND, ADD TO STATE
          if (response.data.status !== 'ZERO_RESULTS') {
             this.setState({
-               waypoints: [...this.state.waypoints, [value, response.data.results[0].geometry.location]]
+               waypoints: [
+                  ...this.state.waypoints,
+                  [address, response.data.results[0].geometry.location]
+               ]
             })
-         }  
+
+         // OTHERWISE, PROMPT ERROR
+         } else {
+            ToastAndroid.showWithGravity(
+               'No results found!',
+               ToastAndroid.SHORT,
+               ToastAndroid.CENTER,
+            )
+         }
       })
    }
 
+   add_route = () => {
+      //
+   }
+
    render() {
-      const { params } = this.props.navigation.state;
       return (
          <>
             <Header label={ 'Modify Route' } />
@@ -53,6 +62,7 @@ class Create extends Component {
                <View style={ styles.container }>
                   <View style={ styles.upper }>
                      <Inputs
+                        name={ this.state.name }
                         update_name={ this.update_name }
                         add_waypoint={ this.add_waypoint }
                      />
@@ -72,7 +82,7 @@ class Create extends Component {
                />
                <Clickable
                   label={ 'Save' }
-                  func={() => { params.add(this.state.name) }}
+                  func={ this.add_route }
                />
             </Footer>
          </>

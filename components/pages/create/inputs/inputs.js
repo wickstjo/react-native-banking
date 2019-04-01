@@ -9,6 +9,7 @@ class Inputs extends Component {
          <Name
             label={ 'Route Name' }
             update_name={ this.props.update_name }
+            name={ this.props.name }
          />
          <Waypoint
             label={ 'Waypoint' }

@@ -21,10 +21,13 @@ class App extends Component {
       });
    }
 
-   add = (name) => {
+   add = (name, waypoints) => {
       new Promise((resolve, reject) => {
          this.setState({
-            routes: [...this.state.routes, name]
+            routes: [
+               ...this.state.routes,
+               [name, waypoints]
+            ]
          })
          resolve();
 
@@ -47,6 +50,15 @@ class App extends Component {
 
    render() {
       const MainNavigator = createStackNavigator({
+         Create: {
+            screen: Create,
+            navigationOptions: {
+               header: null,
+            },
+            params: {
+               add: this.add
+            }
+         },
          Home: {
             screen: Home,
             navigationOptions: {
@@ -55,15 +67,6 @@ class App extends Component {
             params: {
                routes: this.state.routes,
                remove: this.remove
-            }
-         },
-         Create: {
-            screen: Create,
-            navigationOptions: {
-               header: null,
-            },
-            params: {
-               add: this.add
             }
          },
          Profile: {
