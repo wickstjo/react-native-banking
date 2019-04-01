@@ -11,10 +11,10 @@ class Table extends Component {
             renderItem={
                ({ item, index }) =>
                   <Row
-                     label={ item }
+                     label={ item[0] }
                      id={ index }
                      remove={ this.props.remove }
-                     open={ this.props.open }
+                     goto_profile={ this.props.goto_profile }
                   />
             }
          />

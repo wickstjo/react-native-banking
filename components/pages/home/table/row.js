@@ -8,7 +8,7 @@ class Row extends Component {
          <Block
             label={ this.props.label }
             styles={ styles.header }
-            func={ this.props.open }
+            func={ this.props.goto_profile }
          />
          <Block
             label={ 'Remove' }

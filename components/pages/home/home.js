@@ -8,39 +8,40 @@ import Table from './table/table';
 
 class Home extends Component {
 
-   // REMOVE ITEM
-   open = (id, header) => {
+   // MAKE PARAMS GLOBALLY AVAILABLE
+   params = this.props.navigation.state.params;
+
+   // GOTO PROFILE SCREEN
+   goto_profile = (id, header) => {
       this.props.navigation.navigate(
          'Profile',
          { name: header }
       )
    }
 
+   // GOTO CREATE SCREEN
    goto_create = () => {
       this.props.navigation.navigate('Create')
    }
 
-   render() {
-      const { params } = this.props.navigation.state;
-      return (
-         <>
-            <Header label={ 'Saved Profiles' }/>
-            <Content>
-               <Table
-                  data={ params.routes }
-                  remove={ params.remove }
-                  open={ this.open }
-               />
-            </Content>
-            <Footer>
-               <Clickable
-                  label={ 'Create Profile' }
-                  func={ this.goto_create }
-               />
-            </Footer>
-         </>
-      )
-   }
+   render() { return (
+      <>
+         <Header label={ 'Saved Profiles' }/>
+         <Content>
+            <Table
+               data={ this.params.routes }
+               remove={ this.params.remove }
+               goto_profile={ this.goto_profile }
+            />
+         </Content>
+         <Footer>
+            <Clickable
+               label={ 'Create Profile' }
+               func={ this.goto_create }
+            />
+         </Footer>
+      </>
+   )}
 }
 
 export default Home;
