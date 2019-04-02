@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 
+// UI
 import Header from '../../shared/header';
 import Content from '../../shared/content';
 import Footer from '../../shared/footer';
@@ -8,6 +9,7 @@ import Clickable from '../../shared/clickable';
 import Map from '../../shared/map';
 import Inputs from './inputs/inputs';
 
+// FUNCS
 import prompt from '../../funcs/prompt';
 import apis from '../../funcs/apis';
 

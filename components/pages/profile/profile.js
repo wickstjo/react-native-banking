@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+// UI
 import Header from '../../shared/header';
 import Content from '../../shared/content';
 import Footer from '../../shared/footer';
