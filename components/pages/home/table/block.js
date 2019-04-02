@@ -3,7 +3,7 @@ import { View, Text, TouchableWithoutFeedback } from 'react-native';
 
 class Row extends Component {
    render() { return (
-      <TouchableWithoutFeedback onPress={() => { this.props.func(this.props.id, this.props.label) }}>
+      <TouchableWithoutFeedback onPress={() => { this.props.func(this.props.id) }}>
          <View style={ this.props.styles }>
             <Text style={ styles.capitalize }>
                { this.props.label }

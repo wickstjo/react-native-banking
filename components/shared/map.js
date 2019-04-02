@@ -4,27 +4,11 @@ import { View, Text } from 'react-native';
 // <MapView provider={ PROVIDER_GOOGLE } style={ styles.container } region={ this.props.coords } />
 
 class Map extends Component {
-
-   vars = () => {
-      if (this.props.waypoints !== undefined) {
-         return this.props.waypoints.map((item, index) =>
-            <View key={ index }>
-               <Text>
-                  { item[0] }
-               </Text>
-               <Text>
-                  { JSON.stringify(item[1]) }
-               </Text>
-            </View>
-         )
-      }
-   }
-
    render() { return (
       <View style={ styles.container }>
-         <View>
-            { this.vars() }
-         </View>
+         <Text>
+            { JSON.stringify(this.props.waypoints) }
+         </Text>
       </View>
    )}
 }

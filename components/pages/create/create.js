@@ -17,7 +17,7 @@ class Create extends Component {
 
    state = {
       name: '',
-      waypoints: []
+      waypoints: {}
    }
 
    // MAKE PARAMS GLOBALLY AVAILABLE
@@ -42,12 +42,16 @@ class Create extends Component {
             // IF SOMETHING IS FOUND
             if (response.data.status !== 'ZERO_RESULTS') {
 
+               // CONSTRUCT OBJECT
+               let waypoint = {};
+               waypoint[address] = response.data.results[0].geometry.location;
+
                // ADD TO STATE
                this.setState({
-                  waypoints: [
+                  waypoints: {
                      ...this.state.waypoints,
-                     [address, response.data.results[0].geometry.location]
-                  ]
+                     ...waypoint
+                  }
                })
 
                // PROMPT SUCCESS
@@ -70,16 +74,17 @@ class Create extends Component {
          // IF THERE ARE WAYPOINTS
          if (this.state.waypoints.length !== 0) {
 
-            // ADD ROUTE
-            this.params.add(
-               this.state.name,
-               this.state.waypoints
-            )
+            // CONSTRUCT ROUTE OBJECT
+            let route = {};
+            route[this.state.name] = this.state.waypoints;
+            
+            // ADD IT TO STORAGE
+            this.params.add(this.state.name, route)
 
             // RESET FIELDS
             this.setState({
                name: '',
-               waypoints: []
+               waypoints: {}
             })
 
          // OTHERWISE, PROMPT ERROR
@@ -95,7 +100,7 @@ class Create extends Component {
       // RESET FIELDS
       this.setState({
          name: '',
-         waypoints: []
+         waypoints: {}
       })
 
       // CHANGE SCREEN

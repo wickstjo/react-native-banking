@@ -9,12 +9,13 @@ class Row extends Component {
             label={ this.props.label }
             styles={ styles.header }
             func={ this.props.goto_profile }
+            id={ this.props.label }
          />
          <Block
             label={ 'Remove' }
             styles={ styles.secondary }
             func={ this.props.remove }
-            id={ this.props.id }
+            id={ this.props.label }
          />
       </View>
    )}

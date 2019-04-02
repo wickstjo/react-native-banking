@@ -14,7 +14,7 @@ import prompt from '../../funcs/prompt';
 class Home extends Component {
 
    state = {
-      routes: []
+      routes: {}
    }
 
    // FETCH ROUTES FROM STORAGE
@@ -23,42 +23,46 @@ class Home extends Component {
 
          // PUSH ROUTE TO STATE
          this.setState({
-            routes: JSON.parse(response).routes
+            routes: JSON.parse(response)
          })
       });
    }
 
    // ADD ROUTE
-   add = (name, waypoints) => {
+   add = (name, route) => {
 
       // AWAIT STATE UPDATE BEFORE RESOLVING
       new Promise((resolve, reject) => {
          this.setState({
-            routes: [
+            routes: {
                ...this.state.routes,
-               [name, waypoints]
-            ]
+               ...route
+            }
          })
 
          resolve();
 
       // THEN REWRITE STORAGE & PROMPT SUCCESS
       }).then(() => {
-         storage.save(this.state.routes)
-         prompt('Route "' + name + '" added!')
+         storage.save(this.state.routes);
+         prompt('Route "' + name + '" added!');
+
+         // OPEN PROFILE SCREEN
+         this.goto_profile(name);
       });
    }
 
    // REMOVE ROUTE
-   remove = (id) => {
+   remove = (name) => {
 
-      // FISH OUT THE ROUTE NAME FOR LOGGING
-      const name = this.state.routes[id][0];
+      // TAKE SNAPSHOT & DELETE PROPERTY FROM ROUTES
+      let routes = this.state.routes;
+      delete routes[name];
 
       // AWAIT STATE UPDATE BEFORE RESOLVING
       new Promise((resolve, reject) => {
          this.setState({
-            routes: this.state.routes.filter((value, index) => index !== id)
+            routes: routes
          })
 
          resolve();
@@ -71,10 +75,10 @@ class Home extends Component {
    }
 
    // GOTO PROFILE SCREEN
-   goto_profile = (id, header) => {
+   goto_profile = (name) => {
       this.props.navigation.navigate(
          'Profile',
-         { name: header }
+         { name: name }
       )
    }
 
