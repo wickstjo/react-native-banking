@@ -8,25 +8,25 @@ import Map from '../../shared/map';
 
 class Profile extends Component {
 
-   state = {
-      header: 'View Profile',
-      footer: 'Profile Menu',
-   }
+   // MAKE PARAMS GLOBALLY AVAILABLE
+   params = this.props.navigation.state.params;
 
+   // GOTO HOME SCREEN
    goto_home = () => {
       this.props.navigation.navigate('Home')
-      // this.props.navigation.getParam('name')
    }
 
    render() { return (
       <>
-         <Header label={ this.state.header }/>
+         <Header
+            label={ this.params.name }
+         />
          <Content>
             <Map />
          </Content>
          <Footer>
             <Clickable
-               label={ 'View Profile' }
+               label={ 'Main Menu' }
                func={ this.goto_home }
             />
          </Footer>

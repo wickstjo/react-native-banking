@@ -17,8 +17,6 @@ class Map extends Component {
                </Text>
             </View>
          )
-      } else {
-         return <></>
       }
    }
 

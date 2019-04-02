@@ -102,7 +102,7 @@ class Create extends Component {
 
    render() { return (
       <>
-         <Header label={ 'Modify Route' } />
+         <Header label={ 'Create Route' } />
          <Content>
             <View style={ styles.container }>
                <View style={ styles.upper }>
@@ -124,6 +124,7 @@ class Create extends Component {
             <Clickable
                label={ 'Cancel' }
                func={ this.goto_home }
+               styles={ styles.cancel }
             />
             <Clickable
                label={ 'Save' }
@@ -143,6 +144,9 @@ const styles = {
    },
    lower: {
       flex: 5
+   },
+   cancel: {
+      backgroundColor: '#E25D5D'
    }
 }
 

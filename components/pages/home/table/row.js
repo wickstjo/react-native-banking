@@ -27,11 +27,11 @@ const styles = {
       borderBottomWidth: 1,
       flex: 1,
       flexDirection: 'row',
-      marginBottom: 5
+      marginBottom: 5,
    },
    header: {
       flex: 1,
-      padding: 10
+      padding: 10,
    },
    secondary: {
       padding: 10,

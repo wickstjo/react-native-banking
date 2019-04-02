@@ -26,7 +26,7 @@ class Home extends Component {
 
    render() { return (
       <>
-         <Header label={ 'Saved Profiles' }/>
+         <Header label={ 'Saved Routes' }/>
          <Content>
             <Table
                data={ this.params.routes }
