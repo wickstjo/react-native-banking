@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import Name from './name';
-import Waypoint from './waypoint';
+import Field from './field';
+import Setter from './setter';
 
 class Inputs extends Component {
    render() { return (
       <View style={ styles.container }>
-         <Name
+         <Field
             label={ 'Route Name' }
-            update_name={ this.props.update_name }
-            name={ this.props.name }
+            func={ this.props.update_name }
          />
-         <Waypoint
+         <Setter
+            label={ 'Primary Waypoint' }
+            button={ 'Set' }
+            func={ this.props.set_primary }
+         />
+         <Setter
             label={ 'Waypoint' }
-            add_waypoint={ this.props.add_waypoint }
+            button={ 'Add' }
+            func={ this.props.add_waypoint }
          />
       </View>
    )}

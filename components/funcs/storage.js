@@ -7,7 +7,7 @@ class Storage {
    constructor() {
       this.routes().then((data) => {
          if (data === null) {
-            this.save({})
+            this.save([])
          }
       });
    }
@@ -18,8 +18,8 @@ class Storage {
    }
 
    // SAVE ROUTES
-   save(routes) {
-      AsyncStorage.setItem(this.key, JSON.stringify(routes));
+   save(list) {
+      AsyncStorage.setItem(this.key, JSON.stringify({ routes: list }));
    }
 }
 

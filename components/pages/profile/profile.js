@@ -20,10 +20,12 @@ class Profile extends Component {
    render() { return (
       <>
          <Header
-            label={ this.params.name }
+            label={ this.params.route.name }
          />
          <Content>
-            <Map />
+            <Map
+               waypoints={ this.params.route.waypoints }
+            />
          </Content>
          <Footer>
             <Clickable

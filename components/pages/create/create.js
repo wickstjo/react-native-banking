@@ -17,7 +17,8 @@ class Create extends Component {
 
    state = {
       name: '',
-      waypoints: {}
+      primary: {},
+      waypoints: []
    }
 
    // MAKE PARAMS GLOBALLY AVAILABLE
@@ -30,8 +31,42 @@ class Create extends Component {
       })
    }
 
+   // SET PRIMARY WAYPOINT
+   set_primary = (address, field) => {
+      
+      // IF SOMETHING WAS WRITTEN
+      if (address !== '') {
+
+         // CONVERT ADDRESS TO COORDS WITH API
+         apis.query(address).then((response) => {
+
+            // IF SOMETHING IS FOUND
+            if (response.data.status !== 'ZERO_RESULTS') {
+               this.setState({
+                  primary: {
+                     name: address,
+                     coords: response.data.results[0].geometry.location
+                  }
+               })
+
+               // PROMPT SUCCESS
+               prompt('Primary waypoint set!');
+
+            // OTHERWISE, PROMPT ERROR, RESET THE FIELD & RESET STATE PROP
+            } else {
+               prompt('API returned nothing!');
+               field.clear();                            // MAKE BACKTRACKABLE RESET FUNC IN FIELD CLASS?
+
+               this.setState({
+                  primary: {}
+               })
+            }
+         })
+      }
+   }
+
    // ADD WAYPOINT
-   add_waypoint = (address) => {
+   add_waypoint = (address, field) => {
 
       // IF SOMETHING WAS WRITTEN
       if (address !== '') {
@@ -43,19 +78,18 @@ class Create extends Component {
             if (response.data.status !== 'ZERO_RESULTS') {
 
                // CONSTRUCT OBJECT
-               let waypoint = {};
-               waypoint[address] = response.data.results[0].geometry.location;
+               let waypoint = {
+                  name: address,
+                  coords: response.data.results[0].geometry.location
+               };
 
                // ADD TO STATE
                this.setState({
-                  waypoints: {
-                     ...this.state.waypoints,
-                     ...waypoint
-                  }
+                  waypoints: [...this.state.waypoints, waypoint]
                })
 
                // PROMPT SUCCESS
-               prompt('Waypoint added!')
+               prompt('Waypoint "' + address + '" added!')
 
             // OTHERWISE, PROMPT ERROR
             } else { prompt('API returned nothing!') }
@@ -63,6 +97,9 @@ class Create extends Component {
       
       // OTHERWISE, PROMPT ERROR
       } else { prompt('Nothing was specified!') }
+
+      // IN ANY CASE, CLEAR THE FIELD
+      field.clear();
    }
 
    // ADD ROUTE TO STORAGE
@@ -74,18 +111,21 @@ class Create extends Component {
          // IF THERE ARE WAYPOINTS
          if (this.state.waypoints.length !== 0) {
 
-            // CONSTRUCT ROUTE OBJECT
-            let route = {};
-            route[this.state.name] = this.state.waypoints;
-            
-            // ADD IT TO STORAGE
-            this.params.add(this.state.name, route)
+            // IF THE PRIMARY WAYPOINT HAS BEEN SET
+            if (Object.keys(this.state.primary).length !== 0) {
 
-            // RESET FIELDS
-            this.setState({
-               name: '',
-               waypoints: {}
-            })
+                // ADD IT TO STORAGE
+               this.params.add(this.state);
+
+               // RESET FIELDS
+               this.setState({
+                  name: '',
+                  primary: {},
+                  waypoints: []
+               })
+
+            // PRIMARY ERROR
+            } else { prompt('Route requires a primary waypoint!') }
 
          // OTHERWISE, PROMPT ERROR
          } else { prompt('Route requires waypoints!') }
@@ -100,7 +140,8 @@ class Create extends Component {
       // RESET FIELDS
       this.setState({
          name: '',
-         waypoints: {}
+         primary: {},
+         waypoints: []
       })
 
       // CHANGE SCREEN
@@ -114,8 +155,8 @@ class Create extends Component {
             <View style={ styles.container }>
                <View style={ styles.upper }>
                   <Inputs
-                     name={ this.state.name }
                      update_name={ this.update_name }
+                     set_primary={ this.set_primary }
                      add_waypoint={ this.add_waypoint }
                   />
                </View>
@@ -150,7 +191,7 @@ const styles = {
       flex: 1
    },
    lower: {
-      flex: 5
+      flex: 3
    },
    cancel: {
       backgroundColor: '#E25D5D'

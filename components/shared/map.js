@@ -7,7 +7,7 @@ class Map extends Component {
    render() { return (
       <View style={ styles.container }>
          <Text>
-            { JSON.stringify(this.props.waypoints) }
+            { JSON.stringify({ wps: this.props.waypoints }) }
          </Text>
       </View>
    )}

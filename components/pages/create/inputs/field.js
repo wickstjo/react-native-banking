@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableWithoutFeedback } from 'react-native';
 
-class Name extends Component {
+class Field extends Component {
 
    // CREATE REFERENCE
    input_field = React.createRef();
@@ -18,9 +18,8 @@ class Name extends Component {
                <TextInput
                   placeholder={ `None` }
                   style={ styles.textbox }
-                  value={ this.props.name }
                   ref={ component => this.input_field = component }
-                  onChangeText={ this.props.update_name }
+                  onChangeText={ this.props.func }
                />
             </View>
          </View>
@@ -34,7 +33,7 @@ const styles = {
       borderBottomColor: '#BCBCBC',
       borderBottomWidth: 1,
       flex: 1,
-      flexDirection: 'row',
+      flexDirection: 'row'
    },
    left: {
       paddingLeft: 10,
@@ -52,4 +51,4 @@ const styles = {
    }
 }
 
-export default Name;
+export default Field;

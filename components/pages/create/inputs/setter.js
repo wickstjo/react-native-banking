@@ -1,46 +1,50 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, TouchableWithoutFeedback } from 'react-native';
 
-class Waypoint extends Component {
+class Setter extends Component {
 
    state = {
-      waypoint: ''
+      value: ''
    }
 
+   // INPUT REFERENCE
    input_field = React.createRef();
 
-   add = () => {
-      this.props.add_waypoint(this.state.waypoint);
-      this.input_field.clear();
-      this.update_waypoint('');
+   // UPDATE FIELD VALUE
+   update_value = (text) => {
+      this.setState({
+         value: text
+      })
    }
 
-   update_waypoint = (text) => {
-      this.setState({
-         waypoint: text
-      })
+   // EXECUTE FUNC
+   execute = () => {
+      this.props.func(
+         this.state.value,
+         this.input_field
+      )
    }
 
    render() { return (
       <View style={ styles.container }>
-         <TouchableWithoutFeedback onPress={ () => { this.input_field.focus() } }>
+         <TouchableWithoutFeedback onPress={() => { this.input_field.focus() }}>
             <View style={ styles.input }>
                <View style={ styles.left }>
-                  <Text>Waypoint:</Text>
+                  <Text>{ this.props.label }:</Text>
                </View>
                <View style={ styles.right }>
                   <TextInput
                      placeholder={ 'None' }
                      style={ styles.textbox }
                      ref={ component => this.input_field = component }
-                     onChangeText={ this.update_waypoint }
+                     onChangeText={ this.update_value }
                   />
                </View>
             </View>
          </TouchableWithoutFeedback>
-         <TouchableWithoutFeedback onPress={ this.add }>
+         <TouchableWithoutFeedback onPress={ this.execute }>
             <View style={ styles.button }>
-               <Text>Add</Text>
+               <Text>{ this.props.button }</Text>
             </View>
          </TouchableWithoutFeedback>
       </View>
@@ -84,4 +88,4 @@ const styles = {
    }
 }
 
-export default Waypoint;
+export default Setter;

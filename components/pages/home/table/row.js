@@ -9,13 +9,13 @@ class Row extends Component {
             label={ this.props.label }
             styles={ styles.header }
             func={ this.props.goto_profile }
-            id={ this.props.label }
+            id={ this.props.id }
          />
          <Block
             label={ 'Remove' }
             styles={ styles.secondary }
             func={ this.props.remove }
-            id={ this.props.label }
+            id={ this.props.id }
          />
       </View>
    )}
@@ -32,13 +32,10 @@ const styles = {
    },
    header: {
       flex: 1,
-      padding: 10,
+      padding: 12,
    },
    secondary: {
-      padding: 10,
-   },
-   secondary: {
-      padding: 10,
+      padding: 12,
    }
 }
 

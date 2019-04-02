@@ -14,30 +14,29 @@ import prompt from '../../funcs/prompt';
 class Home extends Component {
 
    state = {
-      routes: {}
+      routes: []
    }
 
    // FETCH ROUTES FROM STORAGE
    componentWillMount() {
       storage.routes().then((response) => {
 
-         // PUSH ROUTE TO STATE
-         this.setState({
-            routes: JSON.parse(response)
-         })
+         // IF SOMETHING IS FOUND, UPDATE STATE
+         if (response !== null) {
+            this.setState({
+               routes: JSON.parse(response).routes
+            })
+         }
       });
    }
 
    // ADD ROUTE
-   add = (name, route) => {
-
+   add = (route) => {
+      
       // AWAIT STATE UPDATE BEFORE RESOLVING
       new Promise((resolve, reject) => {
          this.setState({
-            routes: {
-               ...this.state.routes,
-               ...route
-            }
+            routes: [...this.state.routes, route]
          })
 
          resolve();
@@ -45,24 +44,23 @@ class Home extends Component {
       // THEN REWRITE STORAGE & PROMPT SUCCESS
       }).then(() => {
          storage.save(this.state.routes);
-         prompt('Route "' + name + '" added!');
+         prompt('Route "' + route.name + '" added!');
 
          // OPEN PROFILE SCREEN
-         this.goto_profile(name);
+         this.goto_profile(this.state.routes.length - 1);
       });
    }
 
    // REMOVE ROUTE
-   remove = (name) => {
+   remove = (id) => {
 
-      // TAKE SNAPSHOT & DELETE PROPERTY FROM ROUTES
-      let routes = this.state.routes;
-      delete routes[name];
+      // FISH OUT THE ROUTE NAME FOR LOGGING
+      const name = this.state.routes[id].name;
 
       // AWAIT STATE UPDATE BEFORE RESOLVING
       new Promise((resolve, reject) => {
          this.setState({
-            routes: routes
+            routes: this.state.routes.filter((value, index) => index !== id)
          })
 
          resolve();
@@ -75,10 +73,12 @@ class Home extends Component {
    }
 
    // GOTO PROFILE SCREEN
-   goto_profile = (name) => {
+   goto_profile = (id) => {
       this.props.navigation.navigate(
          'Profile',
-         { name: name }
+         { 
+            route: this.state.routes[id]
+         }
       )
    }
 

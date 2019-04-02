@@ -6,12 +6,12 @@ class Table extends Component {
    render() { return (
       <View style={ styles.container }>
          <FlatList
-            data={ Object.keys(this.props.data) }
+            data={ this.props.data }
             keyExtractor={( item, index ) => index.toString() }
             renderItem={
                ({ item, index }) =>
                   <Row
-                     label={ item }
+                     label={ item.name }
                      id={ index }
                      remove={ this.props.remove }
                      goto_profile={ this.props.goto_profile }
