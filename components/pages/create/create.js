@@ -18,7 +18,8 @@ class Create extends Component {
    state = {
       name: '',
       primary: {},
-      waypoints: []
+      waypoints: [],
+      primary_placeholder: ''
    }
 
    // MAKE PARAMS GLOBALLY AVAILABLE
@@ -32,8 +33,8 @@ class Create extends Component {
    }
 
    // SET PRIMARY WAYPOINT
-   set_primary = (address, field) => {
-      
+   set_primary = (address, reset_field) => {
+
       // IF SOMETHING WAS WRITTEN
       if (address !== '') {
 
@@ -42,31 +43,29 @@ class Create extends Component {
 
             // IF SOMETHING IS FOUND
             if (response.data.status !== 'ZERO_RESULTS') {
+               
                this.setState({
                   primary: {
                      name: address,
                      coords: response.data.results[0].geometry.location
-                  }
+                  },
+                  primary_placeholder: address
                })
 
                // PROMPT SUCCESS
                prompt('Primary waypoint set!');
 
             // OTHERWISE, PROMPT ERROR, RESET THE FIELD & RESET STATE PROP
-            } else {
-               prompt('API returned nothing!');
-               field.clear();                            // MAKE BACKTRACKABLE RESET FUNC IN FIELD CLASS?
+            } else { prompt('API returned nothing!'); }
 
-               this.setState({
-                  primary: {}
-               })
-            }
+            // IN ANY CASE, RESET THE COMPONENTS
+            reset_field();
          })
       }
    }
 
    // ADD WAYPOINT
-   add_waypoint = (address, field) => {
+   add_waypoint = (address, reset_field) => {
 
       // IF SOMETHING WAS WRITTEN
       if (address !== '') {
@@ -98,8 +97,8 @@ class Create extends Component {
       // OTHERWISE, PROMPT ERROR
       } else { prompt('Nothing was specified!') }
 
-      // IN ANY CASE, CLEAR THE FIELD
-      field.clear();
+      // IN ANY CASE, RESET THE COMPONENTS
+      reset_field();
    }
 
    // ADD ROUTE TO STORAGE
@@ -114,15 +113,15 @@ class Create extends Component {
             // IF THE PRIMARY WAYPOINT HAS BEEN SET
             if (Object.keys(this.state.primary).length !== 0) {
 
-                // ADD IT TO STORAGE
-               this.params.add(this.state);
+                // ADD ROUTE TO STORAGE
+               this.params.add({
+                  name: this.state.name,
+                  primary: this.state.primary,
+                  waypoints: this.state.waypoints,
+               });
 
-               // RESET FIELDS
-               this.setState({
-                  name: '',
-                  primary: {},
-                  waypoints: []
-               })
+               // RESET THE STATE
+               this.reset_state();
 
             // PRIMARY ERROR
             } else { prompt('Route requires a primary waypoint!') }
@@ -137,15 +136,21 @@ class Create extends Component {
    // GOTO HOME SCREEN
    goto_home = () => {
 
-      // RESET FIELDS
-      this.setState({
-         name: '',
-         primary: {},
-         waypoints: []
-      })
+      // RESET THE STATE
+      this.reset_state();
 
       // CHANGE SCREEN
       this.props.navigation.navigate('Home')
+   }
+
+   // RESET THE STATE
+   reset_state = () => {
+      this.setState({
+         name: '',
+         primary: {},
+         waypoints: [],
+         primary_placeholder: ''
+      })
    }
 
    render() { return (
@@ -158,6 +163,7 @@ class Create extends Component {
                      update_name={ this.update_name }
                      set_primary={ this.set_primary }
                      add_waypoint={ this.add_waypoint }
+                     primary_placeholder={ this.state.primary_placeholder }
                   />
                </View>
                <View style={ styles.lower }>

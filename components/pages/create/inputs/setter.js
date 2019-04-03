@@ -10,8 +10,8 @@ class Setter extends Component {
    // INPUT REFERENCE
    input_field = React.createRef();
 
-   // UPDATE FIELD VALUE
-   update_value = (text) => {
+   // UPDATE VALUE
+   update = (text) => {
       this.setState({
          value: text
       })
@@ -21,8 +21,22 @@ class Setter extends Component {
    execute = () => {
       this.props.func(
          this.state.value,
-         this.input_field
+         this.reset
       )
+   }
+
+   // RESET FIELD & STATE
+   reset = () => {
+      this.update('');
+   }
+
+   // FIGURE OUT PLACEHOLDER
+   get_placeholder = () => {
+      if (this.props.placeholder === undefined || this.props.placeholder === '') {
+         return 'None'
+      } else {
+         return this.props.placeholder;
+      }
    }
 
    render() { return (
@@ -34,10 +48,11 @@ class Setter extends Component {
                </View>
                <View style={ styles.right }>
                   <TextInput
-                     placeholder={ 'None' }
+                     placeholder={ this.get_placeholder() }
+                     value={ this.state.value }
                      style={ styles.textbox }
                      ref={ component => this.input_field = component }
-                     onChangeText={ this.update_value }
+                     onChangeText={ this.update }
                   />
                </View>
             </View>

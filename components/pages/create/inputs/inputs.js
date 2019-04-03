@@ -14,6 +14,7 @@ class Inputs extends Component {
             label={ 'Primary Waypoint' }
             button={ 'Set' }
             func={ this.props.set_primary }
+            placeholder={ this.props.primary_placeholder }
          />
          <Setter
             label={ 'Waypoint' }
