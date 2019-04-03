@@ -70,7 +70,7 @@ const styles = {
    container: {
       marginTop: 5,
       flex: 1,
-      flexDirection: 'row'
+      flexDirection: 'row',
    },
    input: {
       flex: 1,
@@ -78,8 +78,8 @@ const styles = {
       backgroundColor: 'lightgray',
       borderBottomColor: '#BCBCBC',
       borderBottomWidth: 1,
-      paddingLeft: 10,
-      paddingRight: 10
+      paddingLeft: 15,
+      paddingRight: 15
    },
    button: {
       backgroundColor: '#F8A7E4',

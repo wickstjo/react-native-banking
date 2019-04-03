@@ -76,9 +76,7 @@ class Home extends Component {
    goto_profile = (id) => {
       this.props.navigation.navigate(
          'Profile',
-         { 
-            route: this.state.routes[id]
-         }
+         { route: this.state.routes[id] }
       )
    }
 

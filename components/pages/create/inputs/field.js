@@ -33,16 +33,16 @@ const styles = {
       borderBottomColor: '#BCBCBC',
       borderBottomWidth: 1,
       flex: 1,
-      flexDirection: 'row'
+      flexDirection: 'row',
    },
    left: {
-      paddingLeft: 10,
+      paddingLeft: 15,
       justifyContent: 'center',
    },
    right: {
       flex: 1,
       textAlign: 'right',
-      paddingRight: 10,
+      paddingRight: 15,
       justifyContent: 'center',
    },
    textbox: {

@@ -25,6 +25,7 @@ class Profile extends Component {
          <Content>
             <Map
                waypoints={ this.params.route.waypoints }
+               primary={ this.params.route.primary }
             />
          </Content>
          <Footer>

@@ -47,7 +47,10 @@ class Create extends Component {
                this.setState({
                   primary: {
                      name: address,
-                     coords: response.data.results[0].geometry.location
+                     coords: {
+                        latitude: response.data.results[0].geometry.location.lat,
+                        longitude: response.data.results[0].geometry.location.lng
+                     }
                   },
                   primary_placeholder: address
                })
@@ -61,7 +64,9 @@ class Create extends Component {
             // IN ANY CASE, RESET THE COMPONENTS
             reset_field();
          })
-      }
+         
+      // OTHERWISE, PROMPT ERROR
+      } else { prompt('Nothing was specified!') }
    }
 
    // ADD WAYPOINT
@@ -79,7 +84,10 @@ class Create extends Component {
                // CONSTRUCT OBJECT
                let waypoint = {
                   name: address,
-                  coords: response.data.results[0].geometry.location
+                  coords: {
+                     latitude: response.data.results[0].geometry.location.lat,
+                     longitude: response.data.results[0].geometry.location.lng
+                  }
                };
 
                // ADD TO STATE
@@ -136,10 +144,8 @@ class Create extends Component {
    // GOTO HOME SCREEN
    goto_home = () => {
 
-      // RESET THE STATE
+      // RESET THE STATE & CHANGE SCREEN
       this.reset_state();
-
-      // CHANGE SCREEN
       this.props.navigation.navigate('Home')
    }
 
@@ -169,7 +175,7 @@ class Create extends Component {
                <View style={ styles.lower }>
                   <Map
                      waypoints={ this.state.waypoints }
-                     name={ this.state.name }
+                     primary={ this.state.primary }
                   />
                </View>
             </View>
