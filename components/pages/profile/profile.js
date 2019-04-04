@@ -17,15 +17,22 @@ class Profile extends Component {
       this.props.navigation.navigate('Home')
    }
 
+   title = () => {
+      const km = (this.params.route.distance / 1000).toFixed(1);
+      const hrs = ((this.params.route.duration / 60) / 60).toFixed(1);
+      return this.params.route.name + ' (' + km + ' km, ' + hrs + ' hrs)';
+   }
+
    render() { return (
       <>
          <Header
-            label={ this.params.route.name }
+            label={ this.title() }
          />
          <Content>
             <Map
                waypoints={ this.params.route.waypoints }
                primary={ this.params.route.primary }
+               polyline={ this.params.route.polyline }
             />
          </Content>
          <Footer>

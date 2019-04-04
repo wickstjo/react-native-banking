@@ -3,7 +3,7 @@ import { Text, View, TouchableWithoutFeedback } from 'react-native';
 
 class Clickable extends Component {
    render() { return (
-      <TouchableWithoutFeedback onPress={ this.props.func }>
+      <TouchableWithoutFeedback onPress={ this.props.func } disabled={ this.props.disabled }>
          <View style={{ ...styles.container, ...this.props.styles }}>
             <Text style={ styles.font }>
                { this.props.label }

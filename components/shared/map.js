@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Text, View } from 'react-native';
 
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
@@ -32,31 +33,29 @@ class Map extends Component {
             key={ index }
             coordinate={ item.coords }
             title={ item.name }
-            pinColor={ 'red' }
          />
       )
    }
 
    // DRAW DIRECTIONAL POLYLINE
-   directions = () => {
-      let wps = [];
-      this.props.waypoints.map(item => wps.push(item.coords))
-
-      return <MapViewDirections
-         origin={ this.props.primary.coords }
-         destination={ this.props.primary.coords }
-         waypoints={ wps }
-         apikey={ 'AIzaSyBcbkfxWDiiWg6sjnkWHdsrsW7-bT7tfE8' }
-         strokeWidth={ 3 }
-         strokeColor={ 'hotpink' }
-      />
+   polyline = () => {
+      if (this.props.polyline !== null) {
+         return <MapViewDirections
+            origin={ this.props.primary.coords }
+            destination={ this.props.primary.coords }
+            waypoints={ this.props.polyline }
+            apikey={ 'AIzaSyBcbkfxWDiiWg6sjnkWHdsrsW7-bT7tfE8' }
+            strokeWidth={ 3 }
+            strokeColor={ 'hotpink' }
+         />
+      }
    }
 
    render() { return (
       <MapView provider={ PROVIDER_GOOGLE } style={ styles.container } initialRegion={ this.state.region }>
          { this.primary() }
          { this.secondary() }
-         { this.directions() }
+         { this.polyline() }
       </MapView>
    )}
 }
