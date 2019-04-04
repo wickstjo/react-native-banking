@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 

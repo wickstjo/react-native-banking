@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BackHandler } from 'react-native';
 
 // UI
 import Header from '../../shared/header';
@@ -11,6 +12,19 @@ class Profile extends Component {
 
    // MAKE PARAMS GLOBALLY AVAILABLE
    params = this.props.navigation.state.params;
+
+   // OVERRIDE DEFAULT BACK BUTTON
+   componentDidMount() {
+      this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+         this.goto_home();
+         return true;
+      });
+   }
+
+   // REMOVE BACK BUTTON OVERRIDE
+   componentWillUnmount() {
+      this.backHandler.remove();
+   }
 
    // GOTO HOME SCREEN
    goto_home = () => {

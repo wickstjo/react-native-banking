@@ -19,8 +19,7 @@ class Create extends Component {
       name: '',
       primary: {},
       waypoints: [],
-      primary_placeholder: '',
-      disable_save: false
+      primary_placeholder: ''
    }
 
    // MAKE PARAMS GLOBALLY AVAILABLE
@@ -122,15 +121,8 @@ class Create extends Component {
             // IF THE PRIMARY WAYPOINT HAS BEEN SET
             if (Object.keys(this.state.primary).length !== 0) {
 
-               // DISABLE THE SAVE BUTTON
-               this.setState({
-                  disable_save: true
-               })
-
                // OPTIMIZE WAYPOINT ORDER
                apis.optimize(this.state.primary, this.state.waypoints).then((response) => {
-
-                  console.log(response)
 
                   // FISH OUT THE NEW ORDER & DECLARE POLYLINE ARRAY
                   const order = response.data.routes[0].waypoint_order;
@@ -189,8 +181,7 @@ class Create extends Component {
          name: '',
          primary: {},
          waypoints: [],
-         primary_placeholder: '',
-         disable_save: false
+         primary_placeholder: ''
       })
    }
 
@@ -224,7 +215,6 @@ class Create extends Component {
             <Clickable
                label={ 'Save' }
                func={ this.add_route }
-               disabled={ this.state.disable_save }
             />
          </Footer>
       </>
