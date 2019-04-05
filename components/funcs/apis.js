@@ -1,23 +1,19 @@
 import axios from 'axios';
 
 class Apis {
-   key = 'AIzaSyDgmC7tB3nNrLjeU7n9LrStGR6yM70m0NU';
+   key = 'AIzaSyBcbkfxWDiiWg6sjnkWHdsrsW7-bT7tfE8';
 
-   query(foo) {
+   // CONVERT ADDRESS TO COORDS
+   coords(foo) {
       return axios.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + foo + '&key=' + this.key);
    }
 
+   // OPTIMIZE LIST OF WAYPOINTS
    optimize(primary, waypoints) {
-      const key = 'AIzaSyBcbkfxWDiiWg6sjnkWHdsrsW7-bT7tfE8';
-      return axios.get('https://maps.googleapis.com/maps/api/directions/json?origin=' + primary.name + '&destination=' + primary.name + '&waypoints=optimize:true' + this.waypoints(waypoints) + '&key=' + key)
+      return axios.get('https://maps.googleapis.com/maps/api/directions/json?origin=' + primary.name + '&destination=' + primary.name + '&waypoints=optimize:true' + this.waypoints(waypoints) + '&key=' + this.key)
    }
 
-   urlify(item) {
-      const coords = item.coords;
-      const response = coords.latitude + '%2C' + coords.longitude;
-      return response;
-   }
-
+   // STITCH TOGETHER WAYPOINT QUERY
    waypoints(waypoints) {
       let response = '';
 

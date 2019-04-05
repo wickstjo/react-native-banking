@@ -5,21 +5,25 @@ class Storage {
 
    // CHECK IF STORAGE ITEM EXISTS
    constructor() {
-      this.routes().then((data) => {
-         if (data === null) {
-            this.save([])
-         }
-      });
+      this.check();
    }
 
    // FETCH ROUTES
-   routes() {
+   fetch() {
       return AsyncStorage.getItem(this.key);
    }
 
    // SAVE ROUTES
    save(list) {
       AsyncStorage.setItem(this.key, JSON.stringify({ routes: list }));
+   }
+
+   check() {
+      this.fetch().then((data) => {
+         if (data === null) {
+            this.save([])
+         }
+      });
    }
 }
 

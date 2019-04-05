@@ -39,7 +39,7 @@ class Create extends Component {
       if (address !== '') {
 
          // CONVERT ADDRESS TO COORDS WITH API
-         apis.query(address).then((response) => {
+         apis.coords(address).then((response) => {
 
             // IF SOMETHING IS FOUND
             if (response.data.status !== 'ZERO_RESULTS') {
@@ -76,7 +76,7 @@ class Create extends Component {
       if (address !== '') {
 
          // CONVERT ADDRESS TO COORDS WITH API
-         apis.query(address).then((response) => {
+         apis.coords(address).then((response) => {
 
             // IF SOMETHING IS FOUND
             if (response.data.status !== 'ZERO_RESULTS') {
@@ -226,10 +226,10 @@ const styles = {
       flex: 1
    },
    upper: {
-      flex: 1
+      flex: 2
    },
    lower: {
-      flex: 3
+      flex: 5
    },
    cancel: {
       backgroundColor: '#E25D5D'

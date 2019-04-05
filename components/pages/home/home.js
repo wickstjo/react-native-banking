@@ -19,7 +19,7 @@ class Home extends Component {
 
    // FETCH ROUTES FROM STORAGE
    componentWillMount() {
-      storage.routes().then((response) => {
+      storage.fetch().then((response) => {
 
          // IF SOMETHING IS FOUND, UPDATE STATE
          if (response !== null) {
